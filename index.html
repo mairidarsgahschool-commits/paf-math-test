@@ -1,1 +1,146 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAF College Sargodha - Math E-Testing Practice</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f0f4f8; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { background: white; max-width: 650px; width: 100%; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #003366; padding-bottom: 12px; margin-bottom: 20px; }
+        .title { color: #003366; font-weight: bold; font-size: 18px; }
+        .timer { background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; }
+        .question { font-size: 16px; font-weight: 600; color: #1e293b; margin-bottom: 15px; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option-btn { background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 15px; border-radius: 6px; text-align: left; font-size: 15px; cursor: pointer; transition: all 0.2s; }
+        .option-btn:hover { background: #e2e8f0; }
+        .option-btn.selected { border-color: #0284c7; background-color: #e0f2fe; }
+        .option-btn.correct { background-color: #dcfce7; border-color: #22c55e; color: #15803d; }
+        .option-btn.wrong { background-color: #fee2e2; border-color: #ef4444; color: #b91c1c; }
+        .footer { display: flex; justify-content: space-between; margin-top: 25px; align-items: center; }
+        .btn { background: #003366; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        .btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+        .score-box { text-align: center; padding: 20px; }
+        .score-num { font-size: 36px; color: #003366; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="quiz-container">
+    <div class="header">
+        <div class="title">PAF College Sargodha E-Test Practice</div>
+        <div class="timer" id="timer">Time Left: 10:00</div>
+    </div>
+    <div id="quiz-body">
+        <div class="question" id="question-text">Loading question...</div>
+        <div class="options" id="options-container"></div>
+        <div class="footer">
+            <span id="progress" style="font-size: 14px; color: #64748b;">Question 1 of 10</span>
+            <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Next</button>
+        </div>
+    </div>
+    <div id="result-body" style="display: none;" class="score-box">
+        <h2>Test Completed!</h2>
+        <p>Your Final Score:</p>
+        <div class="score-num" id="score-text">0 / 10</div>
+        <p id="feedback-msg"></p>
+        <button class="btn" onclick="location.reload()" style="margin-top: 15px;">Restart Test</button>
+    </div>
+</div>
+
+<script>
+const quizData = [
+    { q: "If A = {1, 2, 3} and B = {3, 4, 5}, what is A ∩ B?", options: ["{1, 2, 3, 4, 5}", "{3}", "Empty Set (Ø)", "{1, 2, 4, 5}"], ans: 1 },
+    { q: "Solve for x: 3x - 7 = 14", options: ["x = 5", "x = 6", "x = 7", "x = 8"], ans: 2 },
+    { q: "What is the simplified value of (x + y)² - 2xy?", options: ["x² - y²", "x² + y²", "(x - y)²", "2xy"], ans: 1 },
+    { q: "The rate of Zakat payable on total wealth kept for one year is:", options: ["2.0%", "2.5%", "5.0%", "10.0%"], ans: 1 },
+    { q: "Convert 54 km/h into meters per second (m/s):", options: ["10 m/s", "12 m/s", "15 m/s", "20 m/s"], ans: 2 },
+    { q: "If two angles of a triangle are 50° and 70°, what is the third angle?", options: ["50°", "60°", "70°", "90°"], ans: 1 },
+    { q: "Simplify: (-2)³ × 2²", options: ["-32", "32", "-16", "16"], ans: 0 },
+    { q: "An item bought for Rs. 800 is sold for Rs. 1000. What is the profit percentage?", options: ["20%", "22.5%", "25%", "30%"], ans: 2 },
+    { q: "In a right-angled triangle, if base = 3cm and perpendicular = 4cm, the hypotenuse is:", options: ["5 cm", "6 cm", "7 cm", "25 cm"], ans: 0 },
+    { q: "What is the complement of a set A relative to Universal set U?", options: ["U ∪ A", "U ∩ A", "U - A", "A - U"], ans: 2 }
+];
+
+let currentIndex = 0;
+let score = 0;
+let selectedOption = null;
+let totalTime = 600; // 10 minutes in seconds
+
+function startTimer() {
+    const timerElem = document.getElementById('timer');
+    const interval = setInterval(() => {
+        let mins = Math.floor(totalTime / 60);
+        let secs = totalTime % 60;
+        secs = secs < 10 ? '0' + secs : secs;
+        timerElem.innerText = `Time Left: ${mins}:${secs}`;
+        if (totalTime <= 0) {
+            clearInterval(interval);
+            showResults();
+        }
+        totalTime--;
+    }, 1000);
+}
+
+function loadQuestion() {
+    const q = quizData[currentIndex];
+    document.getElementById('question-text').innerText = `${currentIndex + 1}. ${q.q}`;
+    document.getElementById('progress').innerText = `Question ${currentIndex + 1} of ${quizData.length}`;
+    const optionsContainer = document.getElementById('options-container');
+    optionsContainer.innerHTML = '';
+    selectedOption = null;
+    document.getElementById('next-btn').disabled = true;
+
+    q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = opt;
+        btn.onclick = () => selectOption(idx, btn);
+        optionsContainer.appendChild(btn);
+    });
+}
+
+function selectOption(index, btn) {
+    if (selectedOption !== null) return; // Allow only one choice
+    selectedOption = index;
+    const correctAns = quizData[currentIndex].ans;
+    const buttons = document.querySelectorAll('.option-btn');
+
+    if (index === correctAns) {
+        btn.classList.add('correct');
+        score++;
+    } else {
+        btn.classList.add('wrong');
+        buttons[correctAns].classList.add('correct');
+    }
+
+    document.getElementById('next-btn').disabled = false;
+}
+
+function nextQuestion() {
+    currentIndex++;
+    if (currentIndex < quizData.length) {
+        loadQuestion();
+    } else {
+        showResults();
+    }
+}
+
+function showResults() {
+    document.getElementById('quiz-body').style.display = 'none';
+    document.getElementById('timer').style.display = 'none';
+    document.getElementById('result-body').style.display = 'block';
+    document.getElementById('score-text').innerText = `${score} / ${quizData.length}`;
+    
+    let msg = score >= 5 ? "Status: PASSED (Qualifies for Next Stage)" : "Status: FAILED (Minimum 50% Required)";
+    document.getElementById('feedback-msg').innerText = msg;
+    document.getElementById('feedback-msg').style.color = score >= 5 ? "#16a34a" : "#dc2626";
+}
+
+loadQuestion();
+startTimer();
+</script>
+</body>
+</html>
