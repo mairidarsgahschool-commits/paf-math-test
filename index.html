@@ -1,146 +1,368 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAF College Sargodha - Math E-Testing Practice</title>
+    <title>PAF Selection Center - Electronic Entry Test Portal</title>
     <style>
-        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f0f4f8; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { background: white; max-width: 650px; width: 100%; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #003366; padding-bottom: 12px; margin-bottom: 20px; }
-        .title { color: #003366; font-weight: bold; font-size: 18px; }
-        .timer { background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; }
-        .question { font-size: 16px; font-weight: 600; color: #1e293b; margin-bottom: 15px; }
-        .options { display: flex; flex-direction: column; gap: 10px; }
-        .option-btn { background: #f8fafc; border: 1px solid #cbd5e1; padding: 12px 15px; border-radius: 6px; text-align: left; font-size: 15px; cursor: pointer; transition: all 0.2s; }
-        .option-btn:hover { background: #e2e8f0; }
-        .option-btn.selected { border-color: #0284c7; background-color: #e0f2fe; }
-        .option-btn.correct { background-color: #dcfce7; border-color: #22c55e; color: #15803d; }
-        .option-btn.wrong { background-color: #fee2e2; border-color: #ef4444; color: #b91c1c; }
-        .footer { display: flex; justify-content: space-between; margin-top: 25px; align-items: center; }
-        .btn { background: #003366; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; }
-        .btn:disabled { background: #cbd5e1; cursor: not-allowed; }
-        .score-box { text-align: center; padding: 20px; }
-        .score-num { font-size: 36px; color: #003366; font-weight: bold; }
+        :root {
+            --primary-bg: #0d1b2a;
+            --card-bg: #1b263b;
+            --accent-gold: #e0a96d;
+            --accent-blue: #415a77;
+            --text-light: #f4f4f9;
+            --text-muted: #a2a8d3;
+            --correct-green: #2ec4b6;
+            --wrong-red: #e63946;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #0b132b;
+            width: 100%;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent-gold);
+            box-sizing: border-box;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text h1 {
+            margin: 0;
+            font-size: 20px;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        .logo-text p {
+            margin: 2px 0 0 0;
+            font-size: 12px;
+            color: var(--accent-gold);
+        }
+
+        .timer-panel {
+            background: rgba(230, 57, 70, 0.2);
+            border: 1px solid var(--wrong-red);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px 0;
+        }
+
+        .candidate-info {
+            background-color: var(--card-bg);
+            border-left: 5px solid var(--accent-gold);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .info-item span {
+            color: var(--text-muted);
+            font-size: 13px;
+            display: block;
+        }
+
+        .info-item strong {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .question-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        .question-header {
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid var(--accent-blue);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .section-tag {
+            background-color: var(--accent-blue);
+            color: var(--accent-gold);
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .option-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-item {
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid var(--accent-blue);
+            padding: 14px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 15px;
+        }
+
+        .option-item:hover {
+            background-color: rgba(255,255,255,0.1);
+            border-color: var(--accent-gold);
+        }
+
+        .option-item.selected {
+            background-color: var(--accent-blue);
+            border-color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .btn-prev {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+
+        .btn-next {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-submit {
+            background-color: var(--correct-green);
+            color: #0d1b2a;
+        }
+
+        #result-screen {
+            display: none;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 8px solid var(--accent-gold);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            font-size: 32px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-<div class="container" id="quiz-container">
-    <div class="header">
-        <div class="title">PAF College Sargodha E-Test Practice</div>
-        <div class="timer" id="timer">Time Left: 10:00</div>
-    </div>
-    <div id="quiz-body">
-        <div class="question" id="question-text">Loading question...</div>
-        <div class="options" id="options-container"></div>
-        <div class="footer">
-            <span id="progress" style="font-size: 14px; color: #64748b;">Question 1 of 10</span>
-            <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Next</button>
+<header>
+    <div class="logo-area">
+        <div class="logo-text">
+            <h1>PAKISTAN AIR FORCE SELECTION PORTAL</h1>
+            <p>E-Testing Center • Pre-Cadet Class VIII Induction Test</p>
         </div>
     </div>
-    <div id="result-body" style="display: none;" class="score-box">
-        <h2>Test Completed!</h2>
-        <p>Your Final Score:</p>
-        <div class="score-num" id="score-text">0 / 10</div>
-        <p id="feedback-msg"></p>
-        <button class="btn" onclick="location.reload()" style="margin-top: 15px;">Restart Test</button>
+    <div class="timer-panel" id="timer">45:00</div>
+</header>
+
+<div class="container">
+    <div class="candidate-info">
+        <div class="info-item"><span>CANDIDATE NAME</span><strong>Muhammad Ali</strong></div>
+        <div class="info-item"><span>ROLL NUMBER</span><strong>L501-42-0925</strong></div>
+        <div class="info-item"><span>CENTER</span><strong>Lahore I & SC</strong></div>
+        <div class="info-item"><span>DATE</span><strong>20 August 2026</strong></div>
+    </div>
+
+    <!-- Active Test Section -->
+    <div id="test-screen">
+        <div class="question-card">
+            <div class="question-header">
+                <span id="question-number">Question 1 of 20</span>
+                <span class="section-tag" id="section-tag">Mathematics</span>
+            </div>
+            <div id="question-text" style="font-size: 16px; margin-bottom: 20px; line-height: 1.6;"></div>
+            <ul class="option-list" id="options"></ul>
+        </div>
+
+        <div class="controls">
+            <button class="btn-prev" onclick="prevQuestion()" id="prev-btn">Previous</button>
+            <button class="btn-next" onclick="nextQuestion()" id="next-btn">Next</button>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="result-screen">
+        <h2>TEST COMPLETED</h2>
+        <p>Your electronic answer sheet has been submitted successfully.</p>
+        <div class="score-circle">
+            <span id="score-text">0/20</span>
+            <span style="font-size:12px; color:var(--text-muted);">MARKS OBTAINED</span>
+        </div>
+        <p id="grade-comment" style="font-size: 18px; color: var(--accent-gold);"></p>
+        <button class="btn-next" onclick="location.reload()" style="margin-top: 20px;">Restart Practice</button>
     </div>
 </div>
 
 <script>
-const quizData = [
-    { q: "If A = {1, 2, 3} and B = {3, 4, 5}, what is A ∩ B?", options: ["{1, 2, 3, 4, 5}", "{3}", "Empty Set (Ø)", "{1, 2, 4, 5}"], ans: 1 },
-    { q: "Solve for x: 3x - 7 = 14", options: ["x = 5", "x = 6", "x = 7", "x = 8"], ans: 2 },
-    { q: "What is the simplified value of (x + y)² - 2xy?", options: ["x² - y²", "x² + y²", "(x - y)²", "2xy"], ans: 1 },
-    { q: "The rate of Zakat payable on total wealth kept for one year is:", options: ["2.0%", "2.5%", "5.0%", "10.0%"], ans: 1 },
-    { q: "Convert 54 km/h into meters per second (m/s):", options: ["10 m/s", "12 m/s", "15 m/s", "20 m/s"], ans: 2 },
-    { q: "If two angles of a triangle are 50° and 70°, what is the third angle?", options: ["50°", "60°", "70°", "90°"], ans: 1 },
-    { q: "Simplify: (-2)³ × 2²", options: ["-32", "32", "-16", "16"], ans: 0 },
-    { q: "An item bought for Rs. 800 is sold for Rs. 1000. What is the profit percentage?", options: ["20%", "22.5%", "25%", "30%"], ans: 2 },
-    { q: "In a right-angled triangle, if base = 3cm and perpendicular = 4cm, the hypotenuse is:", options: ["5 cm", "6 cm", "7 cm", "25 cm"], ans: 0 },
-    { q: "What is the complement of a set A relative to Universal set U?", options: ["U ∪ A", "U ∩ A", "U - A", "A - U"], ans: 2 }
-];
+    const quizData = [
+        { section: "Mathematics", q: "What is the supplementary angle of 120°?", o: ["30°", "60°", "90°", "180°"], a: 1 },
+        { section: "Mathematics", q: "Simplify the expression: 5^6 ÷ 5^4", o: ["5^2", "5^{10}", "5^{24}", "5^{1.5}"], a: 0 },
+        { section: "Mathematics", q: "In the algebraic expression 3x^2 - 5x + 7, what is the coefficient of x?", o: ["3", "5", "-5", "7"], a: 2 },
+        { section: "Mathematics", q: "What is the square root of 1.44?", o: ["1.2", "12", "0.12", "0.012"], a: 0 },
+        { section: "Mathematics", q: "Simplify the ratio 15:75 to its lowest terms:", o: ["1:3", "1:5", "5:1", "3:15"], a: 1 },
+        { section: "Mathematics", q: "8 kg of apples cost 1,600 rupees. How much must we pay for 15 kg?", o: ["2,400", "2,800", "3,000", "3,200"], a: 2 },
+        { section: "Mathematics", q: "Solve using BODMAS: 12 + {23 × 5 ÷ (16 - 22 + 11)}", o: ["35", "25", "45", "15"], a: 0 },
+        { section: "Mathematics", q: "Solve for x: 5x - 7 = 3x + 13", o: ["x = 5", "x = 8", "x = 10", "x = 12"], a: 2 },
+        { section: "Mathematics", q: "A car is traveling at 108 km/h. Express this speed in meters per second (m/s):", o: ["20 m/s", "25 m/s", "30 m/s", "35 m/s"], a: 2 },
+        { section: "Mathematics", q: "Find the area of a circle with a radius of 7 cm (Take π = 22/7):", o: ["154 cm²", "44 cm²", "196 cm²", "138 cm²"], a: 0 },
+        { section: "Intelligence (Verbal)", q: "Clock is to Time as Thermometer is to...?", o: ["Heat", "Temperature", "Weather", "Cold"], a: 1 },
+        { section: "Intelligence (Verbal)", q: "What is the opposite of the word 'Active'?", o: ["Lazy", "Idle", "Slow", "Weak"], a: 1 },
+        { section: "Intelligence (Verbal)", q: "What number replaces the question mark in the sequence: 2, 5, 10, 17, 26, ?", o: ["35", "37", "39", "41"], a: 1 },
+        { section: "Intelligence (Verbal)", q: "If it is 8 O'clock, what is the reflex angle between the hour hand and the minute hand?", o: ["120°", "240°", "180°", "300°"], a: 1 },
+        { section: "Intelligence (Non-Verbal)", q: "Triangle Puzzle:<br>• Triangle 1: Top=4, Left=7, Right=9, Center=12 (Pattern: 7+9-4=12)<br>• Triangle 2: Top=1, Left=1, Right=4, Center=4 (Pattern: 1+4-1=4)<br>• Triangle 3: Top=2, Left=6, Right=5, Center= ?<br>What is the missing value?", o: ["7", "8", "9", "10"], a: 2 }
+    ];
 
-let currentIndex = 0;
-let score = 0;
-let selectedOption = null;
-let totalTime = 600; // 10 minutes in seconds
+    let currentIdx = 0;
+    let userAnswers = Array(quizData.length).fill(null);
+    let timeLeft = 45 * 60; // 45 minutes
 
-function startTimer() {
-    const timerElem = document.getElementById('timer');
-    const interval = setInterval(() => {
-        let mins = Math.floor(totalTime / 60);
-        let secs = totalTime % 60;
-        secs = secs < 10 ? '0' + secs : secs;
-        timerElem.innerText = `Time Left: ${mins}:${secs}`;
-        if (totalTime <= 0) {
-            clearInterval(interval);
-            showResults();
+    const timerEl = document.getElementById("timer");
+
+    const timer = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerEl.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            submitTest();
         }
-        totalTime--;
+        timeLeft--;
     }, 1000);
-}
 
-function loadQuestion() {
-    const q = quizData[currentIndex];
-    document.getElementById('question-text').innerText = `${currentIndex + 1}. ${q.q}`;
-    document.getElementById('progress').innerText = `Question ${currentIndex + 1} of ${quizData.length}`;
-    const optionsContainer = document.getElementById('options-container');
-    optionsContainer.innerHTML = '';
-    selectedOption = null;
-    document.getElementById('next-btn').disabled = true;
+    function loadQuestion() {
+        const qData = quizData[currentIdx];
+        document.getElementById("question-number").innerText = `Question ${currentIdx + 1} of ${quizData.length}`;
+        document.getElementById("section-tag").innerText = qData.section;
+        document.getElementById("question-text").innerHTML = qData.q;
 
-    q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-btn';
-        btn.innerText = opt;
-        btn.onclick = () => selectOption(idx, btn);
-        optionsContainer.appendChild(btn);
-    });
-}
+        const optionsContainer = document.getElementById("options");
+        optionsContainer.innerHTML = "";
 
-function selectOption(index, btn) {
-    if (selectedOption !== null) return; // Allow only one choice
-    selectedOption = index;
-    const correctAns = quizData[currentIndex].ans;
-    const buttons = document.querySelectorAll('.option-btn');
+        qData.o.forEach((opt, idx) => {
+            const li = document.createElement("li");
+            li.className = `option-item ${userAnswers[currentIdx] === idx ? 'selected' : ''}`;
+            li.innerHTML = `<strong>${String.fromCharCode(65 + idx)})</strong> ${opt}`;
+            li.onclick = () => selectOption(idx);
+            optionsContainer.appendChild(li);
+        });
 
-    if (index === correctAns) {
-        btn.classList.add('correct');
-        score++;
-    } else {
-        btn.classList.add('wrong');
-        buttons[correctAns].classList.add('correct');
+        document.getElementById("prev-btn").style.visibility = currentIdx === 0 ? "hidden" : "visible";
+        
+        const nextBtn = document.getElementById("next-btn");
+        if (currentIdx === quizData.length - 1) {
+            nextBtn.innerText = "Finish Test";
+            nextBtn.className = "btn-submit";
+        } else {
+            nextBtn.innerText = "Next";
+            nextBtn.className = "btn-next";
+        }
     }
 
-    document.getElementById('next-btn').disabled = false;
-}
-
-function nextQuestion() {
-    currentIndex++;
-    if (currentIndex < quizData.length) {
+    function selectOption(idx) {
+        userAnswers[currentIdx] = idx;
         loadQuestion();
-    } else {
-        showResults();
     }
-}
 
-function showResults() {
-    document.getElementById('quiz-body').style.display = 'none';
-    document.getElementById('timer').style.display = 'none';
-    document.getElementById('result-body').style.display = 'block';
-    document.getElementById('score-text').innerText = `${score} / ${quizData.length}`;
-    
-    let msg = score >= 5 ? "Status: PASSED (Qualifies for Next Stage)" : "Status: FAILED (Minimum 50% Required)";
-    document.getElementById('feedback-msg').innerText = msg;
-    document.getElementById('feedback-msg').style.color = score >= 5 ? "#16a34a" : "#dc2626";
-}
+    function nextQuestion() {
+        if (currentIdx < quizData.length - 1) {
+            currentIdx++;
+            loadQuestion();
+        } else {
+            submitTest();
+        }
+    }
 
-loadQuestion();
-startTimer();
+    function prevQuestion() {
+        if (currentIdx > 0) {
+            currentIdx--;
+            loadQuestion();
+        }
+    }
+
+    function submitTest() {
+        clearInterval(timer);
+        let score = 0;
+        userAnswers.forEach((ans, idx) => {
+            if (ans === quizData[idx].a) score++;
+        });
+
+        document.getElementById("test-screen").style.display = "none";
+        document.getElementById("result-screen").style.display = "block";
+        document.getElementById("score-text").innerText = `${score}/${quizData.length}`;
+
+        const pct = (score / quizData.length) * 100;
+        let comment = pct >= 80 ? "EXCELLENT - Candidate Recommended for Flight/General Induction!" : 
+                      pct >= 50 ? "PASS - Qualified Cadet College Merit Benchmark." : 
+                      "NOT COMPLETED - Keep practicing!";
+        document.getElementById("grade-comment").innerText = comment;
+    }
+
+    loadQuestion();
 </script>
 </body>
 </html>
