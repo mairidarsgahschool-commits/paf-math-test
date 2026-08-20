@@ -106,9 +106,7 @@
             transition: border-color 0.2s;
         }
 
-        .input-group input:focus {
-            border-color: var(--primary-navy);
-        }
+        .input-group input:focus { border-color: var(--primary-navy); }
 
         /* Top Meta Bar */
         .meta-bar {
@@ -118,6 +116,17 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--card-border);
+        }
+
+        .category-tag {
+            background: var(--primary-navy);
+            color: white;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-left: 8px;
         }
 
         .timer-box {
@@ -228,7 +237,7 @@
                 <p>PAF Sargodha Entrance Examination Portal</p>
             </div>
         </div>
-        <div class="test-badge">Pre-Cadet Mathematics Test</div>
+        <div class="test-badge">Intelligence & Math E-Test</div>
     </header>
 
     <!-- Main App Container -->
@@ -237,12 +246,12 @@
         <!-- Registration Screen -->
         <div class="start-screen" id="start-screen">
             <h2>Candidate Registration</h2>
-            <p>Please enter student details before commencing the examination timer.</p>
+            <p>Complete student registration to start the Combined Intelligence & Mathematics test.</p>
             <div class="input-group">
                 <label for="student-name">Student Full Name:</label>
                 <input type="text" id="student-name" placeholder="Enter student name..." autocomplete="off">
             </div>
-            <button class="btn-next" style="margin-top: 10px;" onclick="startTest()">Start Examination</button>
+            <button class="btn-next" style="margin-top: 10px;" onclick="startTest()">Start Combined Test</button>
         </div>
 
         <!-- Quiz Screen Wrapper (Hidden initially) -->
@@ -255,9 +264,10 @@
                 <div>
                     <span style="font-weight: 700; color: var(--primary-navy);" id="candidate-display">Candidate: -</span>
                     <span style="margin: 0 10px; color: #CBD5E1;">|</span>
-                    <span style="font-weight: 600; color: #64748B;" id="q-counter">Question 1 of 10</span>
+                    <span style="font-weight: 600; color: #64748B;" id="q-counter">Question 1 of 12</span>
+                    <span class="category-tag" id="cat-tag">Intelligence</span>
                 </div>
-                <div class="timer-box" id="timer">Time Left: 10:00</div>
+                <div class="timer-box" id="timer">Time Left: 12:00</div>
             </div>
 
             <!-- Quiz Body -->
@@ -274,7 +284,7 @@
         <div class="result-screen" id="result-body">
             <h2 style="color: var(--primary-navy); margin-bottom: 5px;">Evaluation Complete</h2>
             <p style="color: #64748B; margin-bottom: 20px; font-weight: 600;" id="result-candidate-name">Candidate Name</p>
-            <div class="score-circle" id="score-text">0 / 10</div>
+            <div class="score-circle" id="score-text">0 / 12</div>
             <h3 id="status-text" style="margin-bottom: 20px;">-</h3>
             <button class="btn-next" onclick="location.reload()">Retake Assessment</button>
         </div>
@@ -288,22 +298,27 @@
 
 <script>
 const quizData = [
-    { q: "If A = {1, 2, 3} and B = {3, 4, 5}, what is A ∩ B?", options: ["A) {1, 2, 3, 4, 5}", "B) {3}", "C) Empty Set (Ø)", "D) {1, 2, 4, 5}"], ans: 1 },
-    { q: "Solve for x: 3x - 7 = 14", options: ["A) x = 5", "B) x = 6", "C) x = 7", "D) x = 8"], ans: 2 },
-    { q: "What is the simplified value of (x + y)² - 2xy?", options: ["A) x² - y²", "B) x² + y²", "C) (x - y)²", "D) 2xy"], ans: 1 },
-    { q: "The rate of Zakat payable on wealth kept for one year is:", options: ["A) 2.0%", "B) 2.5%", "C) 5.0%", "D) 10.0%"], ans: 1 },
-    { q: "Convert 54 km/h into meters per second (m/s):", options: ["A) 10 m/s", "B) 12 m/s", "C) 15 m/s", "D) 20 m/s"], ans: 2 },
-    { q: "If two angles of a triangle are 50° and 70°, what is the third angle?", options: ["A) 50°", "B) 60°", "C) 70°", "D) 90°"], ans: 1 },
-    { q: "Simplify: (-2)³ × 2²", options: ["A) -32", "B) 32", "C) -16", "D) 16"], ans: 0 },
-    { q: "An item bought for Rs. 800 is sold for Rs. 1000. What is the profit percentage?", options: ["A) 20%", "B) 22.5%", "C) 25%", "D) 30%"], ans: 2 },
-    { q: "In a right-angled triangle, base = 3cm and perpendicular = 4cm. Find hypotenuse:", options: ["A) 5 cm", "B) 6 cm", "C) 7 cm", "D) 25 cm"], ans: 0 },
-    { q: "What is the complement of a set A relative to Universal set U?", options: ["A) U ∪ A", "B) U ∩ A", "C) U - A", "D) A - U"], ans: 2 }
+    // --- SECTION 1: INTELLIGENCE & REASONING ---
+    { cat: "Intelligence", q: "Which number comes next in the sequence? 2, 6, 12, 20, 30, ___", options: ["A) 36", "B) 40", "C) 42", "D) 48"], ans: 2 },
+    { cat: "Intelligence", q: "Doctor is to Hospital as Teacher is to:", options: ["A) Book", "B) School", "C) Student", "D) Class"], ans: 1 },
+    { cat: "Intelligence", q: "Find the odd one out from the options below:", options: ["A) Circle", "B) Triangle", "C) Sphere", "D) Square"], ans: 2 },
+    { cat: "Intelligence", q: "If CAT is coded as 3120, how is DOG coded in the same pattern?", options: ["A) 4157", "B) 41515", "C) 3147", "D) 4147"], ans: 0 },
+    { cat: "Intelligence", q: "Which word does NOT belong with the others?", options: ["A) Inch", "B) Ounce", "C) Yard", "D) Centimeter"], ans: 1 },
+    { cat: "Intelligence", q: "If yesterday was Tuesday, what day will it be 3 days after tomorrow?", options: ["A) Saturday", "B) Sunday", "C) Monday", "D) Tuesday"], ans: 1 },
+
+    // --- SECTION 2: MATHEMATICS ---
+    { cat: "Mathematics", q: "If A = {2, 4, 6} and B = {4, 6, 8}, what is A ∪ B?", options: ["A) {4, 6}", "B) {2, 4, 6, 8}", "C) {2, 8}", "D) {4}"], ans: 1 },
+    { cat: "Mathematics", q: "Solve for x: 4x + 8 = 32", options: ["A) x = 4", "B) x = 5", "C) x = 6", "D) x = 8"], ans: 2 },
+    { cat: "Mathematics", q: "What is the expansion formula for (a - b)²?", options: ["A) a² - b²", "B) a² + b² - 2ab", "C) a² + b² + 2ab", "D) a² - 2ab - b²"], ans: 1 },
+    { cat: "Mathematics", q: "The sum of all interior angles of a quadrilateral is:", options: ["A) 180°", "B) 270°", "C) 360°", "D) 540°"], ans: 2 },
+    { cat: "Mathematics", q: "If 12 meters of cloth costs Rs. 360, what is the cost of 5 meters?", options: ["A) Rs. 120", "B) Rs. 150", "C) Rs. 180", "D) Rs. 200"], ans: 1 },
+    { cat: "Mathematics", q: "Simplify: 5³ ÷ 5² + 3¹", options: ["A) 5", "B) 8", "C) 15", "D) 28"], ans: 1 }
 ];
 
 let currentIndex = 0;
 let score = 0;
 let selectedOption = null;
-let totalTime = 600;
+let totalTime = 720; // 12 minutes
 let studentName = "";
 let timerInterval = null;
 
@@ -342,6 +357,7 @@ function loadQuestion() {
     const q = quizData[currentIndex];
     document.getElementById('question-text').innerText = `${currentIndex + 1}. ${q.q}`;
     document.getElementById('q-counter').innerText = `Question ${currentIndex + 1} of ${quizData.length}`;
+    document.getElementById('cat-tag').innerText = q.cat;
     document.getElementById('progress-bar').style.width = `${((currentIndex + 1) / quizData.length) * 100}%`;
     
     const optionsContainer = document.getElementById('options-container');
@@ -392,7 +408,7 @@ function showResults() {
     document.getElementById('score-text').innerText = `${score} / ${quizData.length}`;
     
     const statusElem = document.getElementById('status-text');
-    if (score >= 5) {
+    if (score >= 6) {
         statusElem.innerText = "QUALIFIED FOR PAF SARGODHA ENTRY";
         statusElem.style.color = "#16A34A";
     } else {
