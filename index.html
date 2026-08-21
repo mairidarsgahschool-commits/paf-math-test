@@ -18,7 +18,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #EEF2F6; color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; }
 
-        /* Header Styling */
         .school-header {
             background: linear-gradient(135deg, var(--primary-navy) 0%, #1E3A8A 100%);
             color: white;
@@ -52,7 +51,6 @@
             font-weight: 600;
         }
 
-        /* Layout Container */
         .main-container {
             max-width: 900px;
             width: 95%;
@@ -64,51 +62,15 @@
             border: 1px solid var(--card-border);
         }
 
-        /* Registration Screen */
-        .start-screen {
-            padding: 40px 30px;
-            text-align: center;
-        }
+        .start-screen { padding: 40px 30px; text-align: center; }
+        .start-screen h2 { color: var(--primary-navy); margin-bottom: 10px; font-size: 22px; }
+        .start-screen p { color: #64748B; margin-bottom: 25px; font-size: 14px; }
 
-        .start-screen h2 {
-            color: var(--primary-navy);
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
-
-        .start-screen p {
-            color: #64748B;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-
-        .input-group {
-            max-width: 400px;
-            margin: 0 auto 20px auto;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--primary-navy);
-            font-size: 14px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--card-border);
-            border-radius: 6px;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
+        .input-group { max-width: 400px; margin: 0 auto 20px auto; text-align: left; }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--primary-navy); font-size: 14px; }
+        .input-group input { width: 100%; padding: 12px 15px; border: 2px solid var(--card-border); border-radius: 6px; font-size: 15px; outline: none; }
         .input-group input:focus { border-color: var(--primary-navy); }
 
-        /* Top Meta Bar */
         .meta-bar {
             background: var(--light-bg);
             padding: 15px 25px;
@@ -139,24 +101,12 @@
             border: 1px solid #FCD34D;
         }
 
-        .progress-bar-container {
-            width: 100%;
-            height: 6px;
-            background: #E2E8F0;
-        }
+        .progress-bar-container { width: 100%; height: 6px; background: #E2E8F0; }
+        .progress-bar-fill { height: 100%; background: var(--accent-gold); width: 0%; transition: width 0.3s ease; }
 
-        .progress-bar-fill {
-            height: 100%;
-            background: var(--accent-gold);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        /* Content Area */
         .content-area { padding: 30px; }
         .question-text { font-size: 18px; font-weight: 600; margin-bottom: 20px; line-height: 1.5; color: var(--primary-navy); }
 
-        /* Grid for Options */
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
         @media (max-width: 600px) { .options-grid { grid-template-columns: 1fr; } }
 
@@ -176,7 +126,6 @@
         .option-btn.correct { background: #DCFCE7 !important; border-color: var(--success-green) !important; color: #166534; }
         .option-btn.wrong { background: #FEE2E2 !important; border-color: var(--danger-red) !important; color: #991B1B; }
 
-        /* Action Buttons */
         .footer-nav { display: flex; justify-content: flex-end; }
         .btn-next {
             background: var(--primary-navy);
@@ -187,16 +136,13 @@
             font-weight: 700;
             font-size: 15px;
             cursor: pointer;
-            transition: background 0.2s;
         }
         .btn-next:disabled { background: #94A3B8; cursor: not-allowed; }
-        .btn-next:hover:not(:disabled) { background: #1E3A8A; }
 
-        /* Results Screen */
         .result-screen { text-align: center; padding: 40px 20px; display: none; }
         .score-circle {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             background: var(--light-bg);
             border: 6px solid var(--accent-gold);
@@ -209,7 +155,6 @@
             color: var(--primary-navy);
         }
 
-        /* Footer Info */
         .school-footer {
             margin-top: auto;
             background: var(--primary-navy);
@@ -228,33 +173,28 @@
 </head>
 <body>
 
-    <!-- Institutional Header -->
     <header class="school-header">
         <div class="brand-section">
             <div class="logo-badge">MDS</div>
             <div class="school-title">
                 <h1>MAIRI DARSGAH SCHOOL</h1>
-                <p>PAF Sargodha Entrance Examination Portal</p>
+                <p>PAF Sargodha Entrance Test — 21 August 2026</p>
             </div>
         </div>
-        <div class="test-badge">Intelligence & Math E-Test</div>
+        <div class="test-badge">Total Marks: 30</div>
     </header>
 
-    <!-- Main App Container -->
     <div class="main-container">
-        
-        <!-- Registration Screen -->
         <div class="start-screen" id="start-screen">
             <h2>Candidate Registration</h2>
-            <p>Complete student registration to start the Combined Intelligence & Mathematics test.</p>
+            <p>Date: <strong>21 August 2026</strong> | Total Questions: <strong>30 (20 Math + 10 Intelligence)</strong></p>
             <div class="input-group">
                 <label for="student-name">Student Full Name:</label>
-                <input type="text" id="student-name" placeholder="Enter student name..." autocomplete="off">
+                <input type="text" id="student-name" placeholder="Enter student full name..." autocomplete="off">
             </div>
-            <button class="btn-next" style="margin-top: 10px;" onclick="startTest()">Start Combined Test</button>
+            <button class="btn-next" style="margin-top: 10px;" onclick="startTest()">Start 30-Mark Test</button>
         </div>
 
-        <!-- Quiz Screen Wrapper (Hidden initially) -->
         <div id="quiz-wrapper" style="display: none;">
             <div class="progress-bar-container">
                 <div class="progress-bar-fill" id="progress-bar"></div>
@@ -264,13 +204,12 @@
                 <div>
                     <span style="font-weight: 700; color: var(--primary-navy);" id="candidate-display">Candidate: -</span>
                     <span style="margin: 0 10px; color: #CBD5E1;">|</span>
-                    <span style="font-weight: 600; color: #64748B;" id="q-counter">Question 1 of 12</span>
-                    <span class="category-tag" id="cat-tag">Intelligence</span>
+                    <span style="font-weight: 600; color: #64748B;" id="q-counter">Question 1 of 30</span>
+                    <span class="category-tag" id="cat-tag">Math</span>
                 </div>
-                <div class="timer-box" id="timer">Time Left: 12:00</div>
+                <div class="timer-box" id="timer">Time Left: 30:00</div>
             </div>
 
-            <!-- Quiz Body -->
             <div class="content-area" id="quiz-body">
                 <div class="question-text" id="question-text">Loading question...</div>
                 <div class="options-grid" id="options-container"></div>
@@ -280,17 +219,16 @@
             </div>
         </div>
 
-        <!-- Result Screen -->
         <div class="result-screen" id="result-body">
             <h2 style="color: var(--primary-navy); margin-bottom: 5px;">Evaluation Complete</h2>
-            <p style="color: #64748B; margin-bottom: 20px; font-weight: 600;" id="result-candidate-name">Candidate Name</p>
-            <div class="score-circle" id="score-text">0 / 12</div>
+            <p style="color: #64748B; margin-bottom: 5px; font-weight: 600;" id="result-candidate-name">Candidate Name</p>
+            <p style="color: #94A3B8; margin-bottom: 20px; font-size: 13px;">Test Date: 21 August 2026</p>
+            <div class="score-circle" id="score-text">0 / 30</div>
             <h3 id="status-text" style="margin-bottom: 20px;">-</h3>
             <button class="btn-next" onclick="location.reload()">Retake Assessment</button>
         </div>
     </div>
 
-    <!-- Official Contact Footer -->
     <footer class="school-footer">
         <div><strong>Mairi Darsgah School</strong> | Phone: 0662550303 | WhatsApp: 03450541203</div>
         <div>Email: <a href="mailto:mairidarsgahkotaddu@gmail.com">mairidarsgahkotaddu@gmail.com</a></div>
@@ -298,27 +236,45 @@
 
 <script>
 const quizData = [
-    // --- SECTION 1: INTELLIGENCE & REASONING ---
-    { cat: "Intelligence", q: "Which number comes next in the sequence? 2, 6, 12, 20, 30, ___", options: ["A) 36", "B) 40", "C) 42", "D) 48"], ans: 2 },
-    { cat: "Intelligence", q: "Doctor is to Hospital as Teacher is to:", options: ["A) Book", "B) School", "C) Student", "D) Class"], ans: 1 },
-    { cat: "Intelligence", q: "Find the odd one out from the options below:", options: ["A) Circle", "B) Triangle", "C) Sphere", "D) Square"], ans: 2 },
-    { cat: "Intelligence", q: "If CAT is coded as 3120, how is DOG coded in the same pattern?", options: ["A) 4157", "B) 41515", "C) 3147", "D) 4147"], ans: 0 },
-    { cat: "Intelligence", q: "Which word does NOT belong with the others?", options: ["A) Inch", "B) Ounce", "C) Yard", "D) Centimeter"], ans: 1 },
-    { cat: "Intelligence", q: "If yesterday was Tuesday, what day will it be 3 days after tomorrow?", options: ["A) Saturday", "B) Sunday", "C) Monday", "D) Tuesday"], ans: 1 },
+    // --- SECTION 1: MATHEMATICS (20 MARKS) ---
+    { cat: "Math (20 Marks)", q: "If A = {1, 2, 3, 4} and B = {3, 4, 5, 6}, find A ∩ B:", options: ["A) {1, 2, 5, 6}", "B) {3, 4}", "C) {1, 2, 3, 4, 5, 6}", "D) Ø"], ans: 1 },
+    { cat: "Math (20 Marks)", q: "Solve for x: 5x - 15 = 35", options: ["A) x = 8", "B) x = 10", "C) x = 12", "D) x = 15"], ans: 1 },
+    { cat: "Math (20 Marks)", q: "What is the formula for (a + b)²?", options: ["A) a² + b²", "B) a² - 2ab + b²", "C) a² + 2ab + b²", "D) a² - b²"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "The rate of Zakat in Islam is:", options: ["A) 2.0%", "B) 2.5%", "C) 5.0%", "D) 10.0%"], ans: 1 },
+    { cat: "Math (20 Marks)", q: "Convert 72 km/h into meters per second (m/s):", options: ["A) 15 m/s", "B) 20 m/s", "C) 25 m/s", "D) 30 m/s"], ans: 1 },
+    { cat: "Math (20 Marks)", q: "Sum of interior angles of a triangle is:", options: ["A) 90°", "B) 180°", "C) 270°", "D) 360°"], ans: 1 },
+    { cat: "Math (20 Marks)", q: "In a right triangle, base = 6 cm and perpendicular = 8 cm. Hypotenuse = ?", options: ["A) 10 cm", "B) 12 cm", "C) 14 cm", "D) 100 cm"], ans: 0 },
+    { cat: "Math (20 Marks)", q: "Simplify: (-3)³ × 3¹", options: ["A) -27", "B) 81", "C) -81", "D) 27"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "An item bought for Rs. 500 is sold for Rs. 600. Profit percentage is:", options: ["A) 10%", "B) 15%", "C) 20%", "D) 25%"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "What is the complement of Set A in Universal Set U?", options: ["A) U ∪ A", "B) U ∩ A", "C) U - A", "D) A - U"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "Value of x in proportion 2 : 4 :: 6 : x is:", options: ["A) 8", "B) 10", "C) 12", "D) 16"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "If x = 2 and y = 3, find the value of x² + y²:", options: ["A) 10", "B) 12", "C) 13", "D) 25"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "The rate of Ushr on artificially irrigated land is:", options: ["A) 2.5%", "B) 5%", "C) 10%", "D) 20%"], ans: 1 },
+    { cat: "Math (20 Marks)", q: "Perimeter of a square with side 7 cm is:", options: ["A) 14 cm", "B) 21 cm", "C) 28 cm", "D) 49 cm"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "The square root of 625 is:", options: ["A) 15", "B) 25", "C) 35", "D) 45"], ans: 1 },
+    { cat: "Math (20 Marks)", q: "Evaluate: 12 + 6 ÷ 3 - 2", options: ["A) 4", "B) 12", "C) 14", "D) 16"], ans: 1 },
+    { cat: "Math (20 Marks)", q: "Area of a rectangle with length 10 cm and width 5 cm is:", options: ["A) 15 cm²", "B) 30 cm²", "C) 50 cm²", "D) 100 cm²"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "If x - 4 = 10, then x + 2 = ?", options: ["A) 12", "B) 14", "C) 16", "D) 18"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "Express 3/5 as a percentage:", options: ["A) 30%", "B) 50%", "C) 60%", "D) 75%"], ans: 2 },
+    { cat: "Math (20 Marks)", q: "HCF of 12 and 18 is:", options: ["A) 2", "B) 3", "C) 6", "D) 36"], ans: 2 },
 
-    // --- SECTION 2: MATHEMATICS ---
-    { cat: "Mathematics", q: "If A = {2, 4, 6} and B = {4, 6, 8}, what is A ∪ B?", options: ["A) {4, 6}", "B) {2, 4, 6, 8}", "C) {2, 8}", "D) {4}"], ans: 1 },
-    { cat: "Mathematics", q: "Solve for x: 4x + 8 = 32", options: ["A) x = 4", "B) x = 5", "C) x = 6", "D) x = 8"], ans: 2 },
-    { cat: "Mathematics", q: "What is the expansion formula for (a - b)²?", options: ["A) a² - b²", "B) a² + b² - 2ab", "C) a² + b² + 2ab", "D) a² - 2ab - b²"], ans: 1 },
-    { cat: "Mathematics", q: "The sum of all interior angles of a quadrilateral is:", options: ["A) 180°", "B) 270°", "C) 360°", "D) 540°"], ans: 2 },
-    { cat: "Mathematics", q: "If 12 meters of cloth costs Rs. 360, what is the cost of 5 meters?", options: ["A) Rs. 120", "B) Rs. 150", "C) Rs. 180", "D) Rs. 200"], ans: 1 },
-    { cat: "Mathematics", q: "Simplify: 5³ ÷ 5² + 3¹", options: ["A) 5", "B) 8", "C) 15", "D) 28"], ans: 1 }
+    // --- SECTION 2: INTELLIGENCE TEST (10 MARKS) ---
+    { cat: "Intelligence (10 Marks)", q: "Which number comes next in sequence? 3, 6, 12, 24, ___", options: ["A) 30", "B) 36", "C) 48", "D) 60"], ans: 2 },
+    { cat: "Intelligence (10 Marks)", q: "Bird is to Fly as Fish is to:", options: ["A) Walk", "B) Swim", "C) Crawl", "D) Run"], ans: 1 },
+    { cat: "Intelligence (10 Marks)", q: "Find the odd one out:", options: ["A) Apple", "B) Mango", "C) Potato", "D) Banana"], ans: 2 },
+    { cat: "Intelligence (10 Marks)", q: "If BOOK is coded as 2151511, what is PAGE?", options: ["A) 16175", "B) 16171", "C) 15175", "D) 16185"], ans: 0 },
+    { cat: "Intelligence (10 Marks)", q: "Which word does NOT belong with the rest?", options: ["A) Meter", "B) Liter", "C) Kilometer", "D) Centimeter"], ans: 1 },
+    { cat: "Intelligence (10 Marks)", q: "If today is Friday, what day will it be after 10 days?", options: ["A) Sunday", "B) Monday", "C) Tuesday", "D) Monday"], ans: 1 },
+    { cat: "Intelligence (10 Marks)", q: "Light is to Darkness as Knowledge is to:", options: ["A) School", "B) Book", "C) Ignorance", "D) Wisdom"], ans: 2 },
+    { cat: "Intelligence (10 Marks)", q: "Which number is missing? 100, 90, 80, 70, ___", options: ["A) 50", "B) 55", "C) 60", "D) 65"], ans: 2 },
+    { cat: "Intelligence (10 Marks)", q: "Parent is to Child as Tree is to:", options: ["A) Leaf", "B) Seedling", "C) Root", "D) Branch"], ans: 1 },
+    { cat: "Intelligence (10 Marks)", q: "If 1st month is January, which is the 9th month?", options: ["A) July", "B) August", "C) September", "D) October"], ans: 2 }
 ];
 
 let currentIndex = 0;
 let score = 0;
 let selectedOption = null;
-let totalTime = 720; // 12 minutes
+let totalTime = 1800; // 30 minutes
 let studentName = "";
 let timerInterval = null;
 
@@ -408,7 +364,7 @@ function showResults() {
     document.getElementById('score-text').innerText = `${score} / ${quizData.length}`;
     
     const statusElem = document.getElementById('status-text');
-    if (score >= 6) {
+    if (score >= 15) {
         statusElem.innerText = "QUALIFIED FOR PAF SARGODHA ENTRY";
         statusElem.style.color = "#16A34A";
     } else {
