@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>PAF Sargodha & Lower Topa Entrance Test Prep (30 Marks per Subject)</title>
+    <style>
+        :root {
+            --primary-navy: #0F2C59;
+            --accent-gold: #D4AF37;
+            --light-bg: #F8FAFC;
+            --card-border: #E2E8F0;
+            --text-dark: #1E293B;
+            --success-green: #16A34A;
+            --danger-red: #DC2626;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; -webkit-tap-highlight-color: transparent; }
+        html { -webkit-text-size-adjust: 100%; }
+        body { background-color: #EEF2F6; color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; }
+
+        .school-header {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #1E3A8A 100%);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--accent-gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .brand-section { display: flex; align-items: center; gap: 12px; min-width: 0; }
+        .logo-badge {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            font-weight: 900;
+            font-size: 18px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            border: 2px solid white;
+            flex-shrink: 0;
+        }
+        .school-title { min-width: 0; }
+        .school-title h1 { font-size: 17px; font-weight: 700; letter-spacing: 0.4px; }
+        .school-title p { font-size: 12px; color: #CBD5E1; margin-top: 2px; }
+
+        .test-badge {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 7px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .main-container {
+            max-width: 950px;
+            width: 100%;
+            margin: 16px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+        }
+
+        /* Subject Tabs Navigation */
+        .tab-nav {
+            display: flex;
+            background: #E2E8F0;
+            border-bottom: 2px solid var(--card-border);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+
+        .tab-btn {
+            flex: 1 0 auto;
+            min-width: 110px;
+            padding: 13px 12px;
+            background: transparent;
+            border: none;
+            font-weight: 700;
+            font-size: 13px;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .tab-btn:hover { background: #CBD5E1; color: var(--primary-navy); }
+        .tab-btn.active {
+            background: white;
+            color: var(--primary-navy);
+            border-bottom: 4px solid var(--accent-gold);
+        }
+
+        .start-screen { padding: 32px 20px; text-align: center; }
+        .start-screen h2 { color: var(--primary-navy); margin-bottom: 10px; font-size: 20px; }
+        .start-screen p { color: #64748B; margin-bottom: 22px; font-size: 13px; line-height: 1.5; }
+
+        .input-group { max-width: 400px; margin: 0 auto 18px auto; text-align: left; }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--primary-navy); font-size: 14px; }
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--card-border);
+            border-radius: 6px;
+            font-size: 16px; /* prevents iOS auto-zoom on focus */
+            outline: none;
+        }
+        .input-group input:focus { border-color: var(--primary-navy); }
+
+        .meta-bar {
+            background: var(--light-bg);
+            padding: 12px 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .meta-info { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 0; row-gap: 4px; }
+
+        .category-tag {
+            background: var(--primary-navy);
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .timer-box {
+            background: #FEF3C7;
+            color: #92400E;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            border: 1px solid #FCD34D;
+            white-space: nowrap;
+        }
+
+        .progress-bar-container { width: 100%; height: 6px; background: #E2E8F0; }
+        .progress-bar-fill { height: 100%; background: var(--accent-gold); width: 0%; transition: width 0.3s ease; }
+
+        .content-area { padding: 22px 18px; }
+        .question-text { font-size: 17px; font-weight: 600; margin-bottom: 18px; line-height: 1.55; color: var(--primary-navy); }
+
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
+        @media (max-width: 640px) { .options-grid { grid-template-columns: 1fr; } }
+
+        .option-btn {
+            background: #F8FAFC;
+            border: 2px solid var(--card-border);
+            padding: 14px 16px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 48px; /* comfortable touch target */
+            line-height: 1.4;
+        }
+
+        .option-btn:hover { border-color: var(--primary-navy); background: #F1F5F9; }
+        .option-btn.correct { background: #DCFCE7 !important; border-color: var(--success-green) !important; color: #166534; }
+        .option-btn.wrong { background: #FEE2E2 !important; border-color: var(--danger-red) !important; color: #991B1B; }
+
+        .footer-nav { display: flex; justify-content: flex-end; }
+        .btn-next {
+            background: var(--primary-navy);
+            color: white;
+            border: none;
+            padding: 13px 26px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            min-height: 46px;
+            width: 100%;
+        }
+        @media (min-width: 480px) {
+            .btn-next { width: auto; }
+        }
+        .btn-next:disabled { background: #94A3B8; cursor: not-allowed; }
+
+        .result-screen { text-align: center; padding: 32px 18px; display: none; }
+        .score-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: var(--light-bg);
+            border: 6px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-navy);
+        }
+
+        .school-footer {
+            margin-top: auto;
+            background: var(--primary-navy);
+            color: #94A3B8;
+            padding: 16px 20px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-top: 2px solid var(--accent-gold);
+            text-align: center;
+        }
+        .school-footer a { color: white; text-decoration: none; font-weight: 600; }
+
+        /* Small phone refinements */
+        @media (max-width: 420px) {
+            .school-title h1 { font-size: 15px; }
+            .school-title p { font-size: 11px; }
+            .logo-badge { font-size: 16px; padding: 8px 10px; }
+            .test-badge { font-size: 11px; padding: 6px 10px; }
+            .tab-btn { font-size: 12px; min-width: 96px; padding: 12px 8px; }
+            .content-area { padding: 18px 14px; }
+            .question-text { font-size: 16px; }
+            .school-footer { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="school-header">
+        <div class="brand-section">
+            <div class="logo-badge">PAF</div>
+            <div class="school-title">
+                <h1>MAIRI DARSGAH SCHOOL</h1>
+                <p>PAF Sargodha & Lower Topa Entrance Test — 18 September 2026 (Class 7 Level)</p>
+            </div>
+        </div>
+        <div class="test-badge" id="header-badge">Selected Test: 30 Marks</div>
+    </header>
+
+    <div class="main-container">
+        <!-- Subject Selection Tabs -->
+        <div class="tab-nav">
+            <button class="tab-btn active" id="tab-math" onclick="switchSubject('math')">Mathematics</button>
+            <button class="tab-btn" id="tab-science" onclick="switchSubject('science')">Science</button>
+            <button class="tab-btn" id="tab-english" onclick="switchSubject('english')">English</button>
+            <button class="tab-btn" id="tab-urdu" onclick="switchSubject('urdu')">Urdu</button>
+            <button class="tab-btn" id="tab-iq" onclick="switchSubject('iq')">IQ</button>
+        </div>
+
+        <div class="start-screen" id="start-screen">
+            <h2 id="start-title">Cadet Candidate Registration</h2>
+            <p>Target Schools: <strong>PAF Public School Sargodha & PAF College Lower Topa</strong><br>
+            Date: <strong>18 September 2026</strong> | Active Subject Test: <strong id="active-subject-text">Mathematics (30 Questions)</strong></p>
+            <div class="input-group">
+                <label for="student-name">Candidate Full Name:</label>
+                <input type="text" id="student-name" placeholder="Enter full candidate name..." autocomplete="off">
+            </div>
+            <button class="btn-next" onclick="startTest()">Start 30-Mark Test</button>
+        </div>
+
+        <div id="quiz-wrapper" style="display: none;">
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+
+            <div class="meta-bar" id="meta-bar">
+                <div class="meta-info">
+                    <span style="font-weight: 700; color: var(--primary-navy);" id="candidate-display">Candidate: -</span>
+                    <span style="margin: 0 10px; color: #CBD5E1;">|</span>
+                    <span style="font-weight: 600; color: #64748B;" id="q-counter">Question 1 of 30</span>
+                    <span class="category-tag" id="cat-tag">Mathematics</span>
+                </div>
+                <div class="timer-box" id="timer">Time Left: 30:00</div>
+            </div>
+
+            <div class="content-area" id="quiz-body">
+                <div class="question-text" id="question-text">Loading question...</div>
+                <div class="options-grid" id="options-container"></div>
+                <div class="footer-nav">
+                    <button class="btn-next" id="next-btn" onclick="nextQuestion()" disabled>Next Question</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-screen" id="result-body">
+            <h2 style="color: var(--primary-navy); margin-bottom: 5px;">Evaluation Complete</h2>
+            <p style="color: #64748B; margin-bottom: 5px; font-weight: 600;" id="result-candidate-name">Candidate Name</p>
+            <p style="color: #94A3B8; margin-bottom: 20px; font-size: 13px;">Test Date: 18 September 2026</p>
+            <div class="score-circle" id="score-text">0 / 30</div>
+            <h3 id="status-text" style="margin-bottom: 20px;">-</h3>
+            <button class="btn-next" onclick="location.reload()">Retake Assessment</button>
+        </div>
+    </div>
+
+    <footer class="school-footer">
+        <div><strong>Mairi Darsgah School</strong> | Phone: 0662550303 | WhatsApp: 03450541203</div>
+        <div>Email: <a href="mailto:mairidarsgahkotaddu@gmail.com">mairidarsgahkotaddu@gmail.com</a></div>
+        <div style="width: 100%; text-align: center; font-size: 11px; color: #64748B; margin-top: 4px;">Test prepared by Abdul Ghafoor</div>
+    </footer>
+
+<script>
+// Quiz data categorized by PAF Entrance Subject Tabs (30 questions each) — refreshed set
+const quizMaster = {
+    "math": [
+        {
+            "cat": "Mathematics",
+            "q": "Simplify: 33 - (-12) + (-20)",
+            "options": [
+                "A) 15",
+                "B) 25",
+                "C) 35",
+                "D) 5"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Simplify: 9 x (4 - 1) + 8",
+            "options": [
+                "A) 29",
+                "B) 31",
+                "C) 33",
+                "D) 35"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Convert 9/20 to a percentage.",
+            "options": [
+                "A) 40%",
+                "B) 45%",
+                "C) 50%",
+                "D) 55%"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Solve for x: 9x + 3 = 48",
+            "options": [
+                "A) 4",
+                "B) 5",
+                "C) 6",
+                "D) 7"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Simplify: 12x - 5x + 3x",
+            "options": [
+                "A) 8x",
+                "B) 10x",
+                "C) 12x",
+                "D) 14x"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Evaluate: 12² - 10²",
+            "options": [
+                "A) 34",
+                "B) 40",
+                "C) 44",
+                "D) 48"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Find the LCM of 15 and 20.",
+            "options": [
+                "A) 40",
+                "B) 50",
+                "C) 60",
+                "D) 80"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "The sum of angles in a pentagon (5 sides) is:",
+            "options": [
+                "A) 450°",
+                "B) 500°",
+                "C) 540°",
+                "D) 600°"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "If the side of a square is 9 cm, its area is:",
+            "options": [
+                "A) 72 cm²",
+                "B) 76 cm²",
+                "C) 81 cm²",
+                "D) 90 cm²"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "A shopkeeper buys an item for Rs. 500 and sells it for Rs. 575. Find his profit percentage.",
+            "options": [
+                "A) 10%",
+                "B) 15%",
+                "C) 20%",
+                "D) 25%"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Simplify: 9² x 9¹",
+            "options": [
+                "A) 9³",
+                "B) 9²",
+                "C) 81²",
+                "D) 18³"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Mathematics",
+            "q": "What is the square root of 529?",
+            "options": [
+                "A) 21",
+                "B) 22",
+                "C) 23",
+                "D) 24"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Evaluate: 27 - 4 x 5 + 6",
+            "options": [
+                "A) 9",
+                "B) 11",
+                "C) 13",
+                "D) 15"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "If x:y = 7:9 and x = 28, find y.",
+            "options": [
+                "A) 32",
+                "B) 34",
+                "C) 36",
+                "D) 38"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "The perimeter of a regular pentagon with side 9 cm is:",
+            "options": [
+                "A) 40 cm",
+                "B) 42 cm",
+                "C) 45 cm",
+                "D) 48 cm"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Which of these is a prime number?",
+            "options": [
+                "A) 81",
+                "B) 83",
+                "C) 87",
+                "D) 91"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Express 18% as a fraction in lowest terms:",
+            "options": [
+                "A) 9/50",
+                "B) 1/5",
+                "C) 9/25",
+                "D) 1/6"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Find the next number in the series: 10, 17, 24, 31, 38, ___",
+            "options": [
+                "A) 42",
+                "B) 43",
+                "C) 44",
+                "D) 45"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Whistle is to Referee as Baton is to:",
+            "options": [
+                "A) Conductor",
+                "B) Runner",
+                "C) Police",
+                "D) Race"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Mathematics",
+            "q": "If BAG is coded as CBH, how is BOX coded using the same rule?",
+            "options": [
+                "A) CPY",
+                "B) CPZ",
+                "C) DPY",
+                "D) CQY"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Find the odd one out:",
+            "options": [
+                "A) Truck",
+                "B) Car",
+                "C) Bus",
+                "D) Bicycle"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "Mathematics",
+            "q": "A clock shows 7:00. What is the (smaller) angle between the hour and minute hands?",
+            "options": [
+                "A) 120°",
+                "B) 150°",
+                "C) 180°",
+                "D) 210°"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Mathematics",
+            "q": "If today is Thursday, what day will it be after 28 days?",
+            "options": [
+                "A) Wednesday",
+                "B) Thursday",
+                "C) Friday",
+                "D) Saturday"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Mathematics",
+            "q": "A number decreased by 45% becomes 55. Find the original number.",
+            "options": [
+                "A) 90",
+                "B) 95",
+                "C) 98",
+                "D) 100"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "Mathematics",
+            "q": "What is the HCF of 40 and 60?",
+            "options": [
+                "A) 10",
+                "B) 15",
+                "C) 20",
+                "D) 25"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Simplify: (11 + 3) x (6 - 3)",
+            "options": [
+                "A) 36",
+                "B) 39",
+                "C) 42",
+                "D) 45"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Baker is to Bread as Tailor is to:",
+            "options": [
+                "A) Needle",
+                "B) Cloth",
+                "C) Shop",
+                "D) Thread"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Complete the analogy: Pod is to Peas as Shell is to:",
+            "options": [
+                "A) Nut",
+                "B) Egg",
+                "C) Turtle",
+                "D) Both A and B"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "Mathematics",
+            "q": "A rectangle has length 30 cm and breadth 14 cm. Find its area.",
+            "options": [
+                "A) 400",
+                "B) 410",
+                "C) 420",
+                "D) 430"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Mathematics",
+            "q": "Which number should replace the question mark? 8, 16, 32, 64, ?",
+            "options": [
+                "A) 96",
+                "B) 112",
+                "C) 128",
+                "D) 144"
+            ],
+            "ans": 2
+        }
+    ],
+    "science": [
+        {
+            "cat": "Science",
+            "q": "Which organ helps humans see?",
+            "options": [
+                "A) Ear",
+                "B) Eye",
+                "C) Nose",
+                "D) Skin"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which gas is needed by humans for breathing?",
+            "options": [
+                "A) Carbon dioxide",
+                "B) Oxygen",
+                "C) Nitrogen",
+                "D) Hydrogen"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "At what temperature does water boil (Celsius) at sea level?",
+            "options": [
+                "A) 90°C",
+                "B) 95°C",
+                "C) 100°C",
+                "D) 105°C"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Science",
+            "q": "Which part of a plant produces seeds?",
+            "options": [
+                "A) Root",
+                "B) Stem",
+                "C) Leaf",
+                "D) Flower"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "Science",
+            "q": "Which of the following is a decomposer?",
+            "options": [
+                "A) Grass",
+                "B) Lion",
+                "C) Fungus",
+                "D) Rabbit"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Science",
+            "q": "Which of these is a source of renewable energy?",
+            "options": [
+                "A) Petroleum",
+                "B) Coal",
+                "C) Solar",
+                "D) Natural gas"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Science",
+            "q": "Which of the following best conducts sound?",
+            "options": [
+                "A) Vacuum",
+                "B) Air",
+                "C) Water",
+                "D) Steel"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "Science",
+            "q": "Which gas is released by plants at night?",
+            "options": [
+                "A) Oxygen",
+                "B) Carbon dioxide",
+                "C) Nitrogen",
+                "D) Hydrogen"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "The process of a liquid turning into a solid is called:",
+            "options": [
+                "A) Melting",
+                "B) Freezing",
+                "C) Evaporation",
+                "D) Condensation"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which blood component transports oxygen?",
+            "options": [
+                "A) White blood cells",
+                "B) Red blood cells",
+                "C) Platelets",
+                "D) Plasma"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which instrument is used to measure blood pressure?",
+            "options": [
+                "A) Thermometer",
+                "B) Sphygmomanometer",
+                "C) Barometer",
+                "D) Stethoscope"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which is the longest bone in the human body?",
+            "options": [
+                "A) Humerus",
+                "B) Femur",
+                "C) Tibia",
+                "D) Radius"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which vitamin deficiency causes beriberi?",
+            "options": [
+                "A) Vitamin A",
+                "B) Vitamin B1",
+                "C) Vitamin C",
+                "D) Vitamin D"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which of these materials is magnetic?",
+            "options": [
+                "A) Aluminum",
+                "B) Copper",
+                "C) Iron",
+                "D) Plastic"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Science",
+            "q": "The force that opposes relative motion between two surfaces is called:",
+            "options": [
+                "A) Gravity",
+                "B) Friction",
+                "C) Magnetism",
+                "D) Tension"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which part of the immune system produces antibodies to fight infections?",
+            "options": [
+                "A) Liver",
+                "B) White blood cells",
+                "C) Kidney",
+                "D) Heart"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "The mixing of colours of light to form white light is called:",
+            "options": [
+                "A) Dispersion",
+                "B) Recombination",
+                "C) Reflection",
+                "D) Refraction"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which of these is an example of a gas?",
+            "options": [
+                "A) Ice",
+                "B) Water",
+                "C) Steam",
+                "D) Rock"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Science",
+            "q": "Objects with a density equal to water will:",
+            "options": [
+                "A) Sink",
+                "B) Remain suspended/float partially",
+                "C) Always float fully",
+                "D) Dissolve"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Approximately how many muscles are present in the human body?",
+            "options": [
+                "A) 300",
+                "B) 500",
+                "C) 640",
+                "D) 800"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Science",
+            "q": "Which test detects the presence of chlorine in water?",
+            "options": [
+                "A) Litmus test",
+                "B) Starch-iodide test",
+                "C) Iodine test",
+                "D) Benedict's test"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "The transfer of heat in liquids and gases through currents is called:",
+            "options": [
+                "A) Conduction",
+                "B) Convection",
+                "C) Radiation",
+                "D) Insulation"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which organ produces hydrochloric acid to help digest food?",
+            "options": [
+                "A) Liver",
+                "B) Stomach",
+                "C) Pancreas",
+                "D) Small intestine"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which of the following is a physical change?",
+            "options": [
+                "A) Souring of milk",
+                "B) Rusting of nail",
+                "C) Dissolving sugar in water",
+                "D) Burning of candle"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Science",
+            "q": "The SI unit of mass is:",
+            "options": [
+                "A) Newton",
+                "B) Kilogram",
+                "C) Litre",
+                "D) Meter"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which organ produces red blood cells in the human body?",
+            "options": [
+                "A) Liver",
+                "B) Bone marrow",
+                "C) Spleen",
+                "D) Kidney"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which of these is an example of a mixture?",
+            "options": [
+                "A) Water",
+                "B) Sugar",
+                "C) Lemonade",
+                "D) Salt"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Science",
+            "q": "Which gas is produced when metals react with acids?",
+            "options": [
+                "A) Oxygen",
+                "B) Hydrogen",
+                "C) Carbon dioxide",
+                "D) Nitrogen"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Science",
+            "q": "Which is the largest planet in our solar system?",
+            "options": [
+                "A) Earth",
+                "B) Saturn",
+                "C) Jupiter",
+                "D) Neptune"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Science",
+            "q": "Which of the following converts electrical energy into mechanical energy?",
+            "options": [
+                "A) Generator",
+                "B) Motor",
+                "C) Battery",
+                "D) Transformer"
+            ],
+            "ans": 1
+        }
+    ],
+    "english": [
+        {
+            "cat": "English",
+            "q": "Choose the synonym of 'BRIGHT':",
+            "options": [
+                "A) Dull",
+                "B) Shiny",
+                "C) Dark",
+                "D) Dim"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the antonym of 'POLITE':",
+            "options": [
+                "A) Courteous",
+                "B) Rude",
+                "C) Kind",
+                "D) Gentle"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Fill in the blank: They have been friends _____ childhood.",
+            "options": [
+                "A) since",
+                "B) for",
+                "C) from",
+                "D) at"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correctly spelled word:",
+            "options": [
+                "A) Rythem",
+                "B) Rhythm",
+                "C) Rythm",
+                "D) Rhithm"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Identify the part of speech of 'gently' in: She closed the door gently.",
+            "options": [
+                "A) Noun",
+                "B) Adjective",
+                "C) Adverb",
+                "D) Verb"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct passive voice: 'The gardener waters the plants.'",
+            "options": [
+                "A) The plants are watered by the gardener.",
+                "B) The plants were watered by the gardener.",
+                "C) The plants is watered by the gardener.",
+                "D) The plants has watered the gardener."
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct plural of 'MOUSE' (computer device):",
+            "options": [
+                "A) Mouses",
+                "B) Mice",
+                "C) Both A and B are acceptable for the computer device",
+                "D) Meece"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct preposition: 'He is confident _____ his abilities.'",
+            "options": [
+                "A) of",
+                "B) in",
+                "C) with",
+                "D) at"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct indirect speech: He said, 'I am working hard.'",
+            "options": [
+                "A) He said that he is working hard.",
+                "B) He said that he was working hard.",
+                "C) He says that he was working hard.",
+                "D) He told that he is working hard."
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Meaning of the idiom 'Don't count your chickens before they hatch':",
+            "options": [
+                "A) Don't plan ahead",
+                "B) Don't assume success before it happens",
+                "C) Don't raise chickens",
+                "D) Don't be impatient"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct sentence:",
+            "options": [
+                "A) A group of tourists were visiting the museum.",
+                "B) A group of tourists was visiting the museum.",
+                "C) A group of tourists are visiting the museum.",
+                "D) A group of tourist was visiting the museum."
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Identify the tense: 'He has been working here since 2015.'",
+            "options": [
+                "A) Present Simple",
+                "B) Present Perfect",
+                "C) Present Perfect Continuous",
+                "D) Past Perfect"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct article: 'It was _____ honor to meet you.'",
+            "options": [
+                "A) a",
+                "B) an",
+                "C) the",
+                "D) no article"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Select the correct comparative: 'Her voice is _____ than his.'",
+            "options": [
+                "A) soft",
+                "B) softer",
+                "C) softest",
+                "D) more soft"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct sentence:",
+            "options": [
+                "A) She don't understand the lesson.",
+                "B) She doesn't understands the lesson.",
+                "C) She doesn't understand the lesson.",
+                "D) She not understand the lesson."
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "English",
+            "q": "Choose the synonym of 'BOLD':",
+            "options": [
+                "A) Timid",
+                "B) Brave",
+                "C) Shy",
+                "D) Fearful"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the antonym of 'SUCCESS':",
+            "options": [
+                "A) Victory",
+                "B) Failure",
+                "C) Triumph",
+                "D) Achievement"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct possessive: 'The _____ toys were new.'",
+            "options": [
+                "A) babies",
+                "B) baby's",
+                "C) babies'",
+                "D) babys'"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "English",
+            "q": "Identify the sentence type: 'Please submit your homework on time.'",
+            "options": [
+                "A) Assertive",
+                "B) Interrogative",
+                "C) Exclamatory",
+                "D) Imperative"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct conjunction: 'Study now _____ you will fail the exam.'",
+            "options": [
+                "A) because",
+                "B) unless",
+                "C) otherwise",
+                "D) so"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "English",
+            "q": "Meaning of the idiom 'The last straw':",
+            "options": [
+                "A) The final piece of straw",
+                "B) The final problem that makes a situation unbearable",
+                "C) A small mistake",
+                "D) The beginning of a problem"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct sentence in reported speech: She said, 'I will finish it soon.'",
+            "options": [
+                "A) She said that she will finish it soon.",
+                "B) She said that she would finish it soon.",
+                "C) She says that she would finish it soon.",
+                "D) She told she finishes it soon."
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Which word is a proper noun?",
+            "options": [
+                "A) ocean",
+                "B) lake",
+                "C) Atlantic",
+                "D) sea"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct spelling:",
+            "options": [
+                "A) Restaraunt",
+                "B) Restaurant",
+                "C) Resturant",
+                "D) Restaurent"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct sentence: 'If I win the lottery, I _____ travel the world.'",
+            "options": [
+                "A) will",
+                "B) would",
+                "C) would have",
+                "D) had"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "English",
+            "q": "Choose the synonym of 'GENUINE':",
+            "options": [
+                "A) Fake",
+                "B) Authentic",
+                "C) False",
+                "D) Artificial"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the antonym of 'DEPART':",
+            "options": [
+                "A) Leave",
+                "B) Arrive",
+                "C) Go",
+                "D) Exit"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct word: The picture hangs _____ the wall.",
+            "options": [
+                "A) on",
+                "B) in",
+                "C) at",
+                "D) into"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "English",
+            "q": "Meaning of 'Get cold feet':",
+            "options": [
+                "A) To feel cold",
+                "B) To become nervous or hesitant before doing something",
+                "C) To wear socks",
+                "D) To go outside"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "English",
+            "q": "Choose the correct sentence:",
+            "options": [
+                "A) Each of the players are ready.",
+                "B) Each of the players is ready.",
+                "C) Each of the players being ready.",
+                "D) Each of the player is ready."
+            ],
+            "ans": 1
+        }
+    ],
+    "urdu": [
+        {
+            "cat": "Urdu",
+            "q": "لفظ 'دوست' کا متضاد کیا ہے؟",
+            "options": [
+                "A) رفیق",
+                "B) دشمن",
+                "C) ساتھی",
+                "D) یار"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "'اونچا' کا متضاد کیا ہے؟",
+            "options": [
+                "A) بلند",
+                "B) نیچا",
+                "C) طویل",
+                "D) عظیم"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "'باغ' کس قسم کا اسم ہے؟",
+            "options": [
+                "A) اسم ذات",
+                "B) اسم صفت",
+                "C) اسم فعل",
+                "D) اسم ضمیر"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "جملہ مکمل کریں: 'وہ روزانہ نماز _____ ہیں۔'",
+            "options": [
+                "A) پڑھ",
+                "B) پڑھتی",
+                "C) پڑھتے",
+                "D) پڑھتا"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Urdu",
+            "q": "'دوا' کا جمع کیا ہوگا؟",
+            "options": [
+                "A) دواؤں",
+                "B) دوائیں",
+                "C) دوا خود",
+                "D) دوایں"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "'محبوب' کا متضاد کیا ہے؟",
+            "options": [
+                "A) عزیز",
+                "B) ناپسندیدہ",
+                "C) پیارا",
+                "D) دلبر"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "محاورہ 'دل پر بوجھ رکھنا' کا مطلب ہے:",
+            "options": [
+                "A) پریشان رہنا یا فکرمند ہونا",
+                "B) خوش ہونا",
+                "C) سو جانا",
+                "D) بھول جانا"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'رقاص' کا مونث کیا ہے؟",
+            "options": [
+                "A) رقاصہ",
+                "B) رقاصانی",
+                "C) رقاصنی",
+                "D) رقاصات"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'مضبوطی' کس لفظ سے بنا ہے؟",
+            "options": [
+                "A) مضبوط",
+                "B) کمزور",
+                "C) نازک",
+                "D) لاغر"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'اطمینان' کا متضاد کیا ہے؟",
+            "options": [
+                "A) سکون",
+                "B) بے چینی",
+                "C) آرام",
+                "D) راحت"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "محاورہ 'دل میں کھٹکنا' کا مطلب ہے:",
+            "options": [
+                "A) شک پیدا ہونا یا تشویش ہونا",
+                "B) خوش ہونا",
+                "C) بھول جانا",
+                "D) اطمینان ہونا"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'شکست' کا متضاد کیا ہے؟",
+            "options": [
+                "A) ناکامی",
+                "B) فتح یا کامیابی",
+                "C) ہار",
+                "D) زوال"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "جملے میں فاعل کی نشاندہی کریں: 'درزی نے کپڑا سیا۔'",
+            "options": [
+                "A) درزی",
+                "B) کپڑا",
+                "C) سیا",
+                "D) نے"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'یگانگت' کا متضاد کیا ہے؟",
+            "options": [
+                "A) اتحاد",
+                "B) پھوٹ",
+                "C) میل جول",
+                "D) رفاقت"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "'دریا' کس قسم کا اسم ہے؟",
+            "options": [
+                "A) اسم ذات",
+                "B) اسم معرفہ",
+                "C) اسم نکرہ",
+                "D) اسم صفت"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "محاورہ 'منہ پھلانا' کا مطلب ہے:",
+            "options": [
+                "A) ناراض ہونا",
+                "B) خوش ہونا",
+                "C) کھانا کھانا",
+                "D) بولنا"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'استقلال' کا مترادف کیا ہے؟",
+            "options": [
+                "A) ثابت قدمی",
+                "B) کمزوری",
+                "C) لغزش",
+                "D) بزدلی"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'دوپہر' کا متضاد کیا ہے؟",
+            "options": [
+                "A) صبح",
+                "B) رات",
+                "C) شام",
+                "D) دن"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "'رہبر' کا مترادف کیا ہے؟",
+            "options": [
+                "A) رہنما",
+                "B) پیروکار",
+                "C) شاگرد",
+                "D) ملازم"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'دیانت' کا متضاد کیا ہے؟",
+            "options": [
+                "A) امانت",
+                "B) بددیانتی",
+                "C) سچائی",
+                "D) صداقت"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "محاورہ 'ناک بھوں چڑھانا' کا مطلب ہے:",
+            "options": [
+                "A) ناپسندیدگی ظاہر کرنا",
+                "B) خوش ہونا",
+                "C) قبول کرنا",
+                "D) مدد کرنا"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'کہانی' کا جمع کیا ہے؟",
+            "options": [
+                "A) کہانیاں",
+                "B) کہانیوں",
+                "C) کہانیات",
+                "D) کہانی خود"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "جملے میں مفعول کی نشاندہی کریں: 'مصور نے تصویر بنائی۔'",
+            "options": [
+                "A) مصور",
+                "B) تصویر",
+                "C) بنائی",
+                "D) نے"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "'مسرت' کا متضاد کیا ہے؟",
+            "options": [
+                "A) خوشی",
+                "B) غم",
+                "C) لطف",
+                "D) شادمانی"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "'راست بازی' کا مترادف کیا ہے؟",
+            "options": [
+                "A) سچائی یا دیانتداری",
+                "B) جھوٹ",
+                "C) فریب",
+                "D) دھوکہ"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'وادی' کا مترادف کیا ہے؟",
+            "options": [
+                "A) میدان یا گھاٹی",
+                "B) پہاڑ",
+                "C) صحرا",
+                "D) سمندر"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "Urdu",
+            "q": "'قناعت پسند' کا متضاد کیا ہے؟",
+            "options": [
+                "A) صابر",
+                "B) لالچی یا حریص",
+                "C) خوش",
+                "D) راضی"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "'مستحکم' کا متضاد کیا ہے؟",
+            "options": [
+                "A) مضبوط",
+                "B) کمزور یا غیرمستحکم",
+                "C) پائیدار",
+                "D) قوی"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "Urdu",
+            "q": "جملے میں صفت کی نشاندہی کریں: 'یہ ایک شاندار محل ہے۔'",
+            "options": [
+                "A) یہ",
+                "B) ایک",
+                "C) شاندار",
+                "D) محل"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "Urdu",
+            "q": "'فرمانبردار' کا متضاد کیا ہے؟",
+            "options": [
+                "A) اطاعت گزار",
+                "B) نافرمان",
+                "C) تابعدار",
+                "D) وفادار"
+            ],
+            "ans": 1
+        }
+    ],
+    "iq": [
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Find the next number: 9, 18, 36, 72, ___",
+            "options": [
+                "A) 108",
+                "B) 126",
+                "C) 144",
+                "D) 162"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Find the next number: 7, 13, 25, 49, ___",
+            "options": [
+                "A) 87",
+                "B) 91",
+                "C) 95",
+                "D) 97"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Whistle is to Referee as Baton is to:",
+            "options": [
+                "A) Conductor",
+                "B) Runner",
+                "C) Police",
+                "D) Relay"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Chef is to Recipe as Architect is to:",
+            "options": [
+                "A) Building",
+                "B) Blueprint",
+                "C) Bricks",
+                "D) Construction"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "If BAG is coded as CBH, how is CAT coded using the same rule?",
+            "options": [
+                "A) DBU",
+                "B) DBV",
+                "C) EBU",
+                "D) DCU"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Find the odd one out:",
+            "options": [
+                "A) Rectangle",
+                "B) Square",
+                "C) Rhombus",
+                "D) Circle"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "A clock shows 6:30. What is the approximate angle between the hour and minute hands?",
+            "options": [
+                "A) 0°",
+                "B) 15°",
+                "C) 30°",
+                "D) 45°"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "If today is Sunday, what day will it be after 17 days?",
+            "options": [
+                "A) Tuesday",
+                "B) Wednesday",
+                "C) Thursday",
+                "D) Friday"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "A is the sister of B. C is the father of A. How is C related to B?",
+            "options": [
+                "A) Father",
+                "B) Uncle",
+                "C) Brother",
+                "D) Grandfather"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Complete the analogy: Cat is to Kitten as Rabbit is to:",
+            "options": [
+                "A) Bunny",
+                "B) Cub",
+                "C) Calf",
+                "D) Pup"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Which number should replace the question mark? 5, 10, 20, 40, 80, ?",
+            "options": [
+                "A) 120",
+                "B) 140",
+                "C) 160",
+                "D) 180"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Which number should replace the question mark? 99, 88, 77, 66, ?",
+            "options": [
+                "A) 44",
+                "B) 50",
+                "C) 55",
+                "D) 60"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "If in a code, 'CAT' is written as 'DBU', how is 'DOG' written?",
+            "options": [
+                "A) EPH",
+                "B) EPI",
+                "C) FPH",
+                "D) EOH"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Choose the word that does NOT belong:",
+            "options": [
+                "A) Doctor",
+                "B) Nurse",
+                "C) Surgeon",
+                "D) Chef"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Rearrange the letters of 'CARES' to form another meaningful word.",
+            "options": [
+                "A) RACES",
+                "B) CARES itself only",
+                "C) SCARE",
+                "D) Both A and C are valid"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "If West becomes East, East becomes West, North becomes South, and South becomes North, what was originally South is now called:",
+            "options": [
+                "A) North",
+                "B) South",
+                "C) East",
+                "D) West"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "A man walks 12 km North, then 16 km East. How far is he from the start?",
+            "options": [
+                "A) 18 km",
+                "B) 20 km",
+                "C) 22 km",
+                "D) 24 km"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Which word is the odd one out?",
+            "options": [
+                "A) Shout",
+                "B) Yell",
+                "C) Scream",
+                "D) Whisper"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Find the missing number: 10, 20, 30, ___, 50",
+            "options": [
+                "A) 35",
+                "B) 38",
+                "C) 40",
+                "D) 42"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Complete the analogy: Farmer is to Crops as Fisherman is to:",
+            "options": [
+                "A) Fish",
+                "B) Boat",
+                "C) Net",
+                "D) Sea"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Five friends sit in a row: Ayesha, Kashif, Mahnoor, Danish, Ramsha. Who is in the middle?",
+            "options": [
+                "A) Ayesha",
+                "B) Kashif",
+                "C) Mahnoor",
+                "D) Danish"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Choose the option that logically continues: 1 triangle, 2 triangles, 3 triangles, ___",
+            "options": [
+                "A) 2 triangles",
+                "B) 4 triangles",
+                "C) 1 triangle",
+                "D) 0 triangles"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "If '4' means 'multiply' and '6' means 'add', evaluate: 7 4 3 6 2 (read left to right)",
+            "options": [
+                "A) 19",
+                "B) 21",
+                "C) 23",
+                "D) 25"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Which number is the odd one out: 49, 64, 75, 81, 100?",
+            "options": [
+                "A) 64",
+                "B) 75",
+                "C) 81",
+                "D) 100"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "In a code, 'FISH' is written as 'GJTI' (each letter shifted forward by 1). How is 'BIRD' written?",
+            "options": [
+                "A) CJSE",
+                "B) CJSF",
+                "C) DJSE",
+                "D) CKSE"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Find the missing number in the pattern: 4, 8, 12, 16, ___",
+            "options": [
+                "A) 18",
+                "B) 19",
+                "C) 20",
+                "D) 22"
+            ],
+            "ans": 2
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Complete the analogy: Librarian is to Library as Curator is to:",
+            "options": [
+                "A) Museum",
+                "B) Gallery",
+                "C) Exhibit",
+                "D) Art"
+            ],
+            "ans": 0
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Five people sit in a row: Hamid, Zoya, Rehan, Alia, Junaid. Who is second from the right?",
+            "options": [
+                "A) Rehan",
+                "B) Alia",
+                "C) Junaid",
+                "D) Zoya"
+            ],
+            "ans": 1
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "Choose the number that continues: 5, 15, 45, 135, ___",
+            "options": [
+                "A) 270",
+                "B) 315",
+                "C) 360",
+                "D) 405"
+            ],
+            "ans": 3
+        },
+        {
+            "cat": "IQ / Reasoning",
+            "q": "If a boy is facing South and turns 90° clockwise, which direction does he face?",
+            "options": [
+                "A) North",
+                "B) West",
+                "C) East",
+                "D) South"
+            ],
+            "ans": 1
+        }
+    ]
+};
+
+let currentSubject = 'math';
+let currentQIndex = 0;
+let score = 0;
+let selectedOption = null;
+let timerInterval = null;
+let timeLeft = 1800; // 30 mins
+let candidateName = "";
+
+const subjectNames = {
+    math: "Mathematics (30 Questions)",
+    science: "Science (30 Questions)",
+    english: "English (30 Questions)",
+    urdu: "Urdu (30 Questions)",
+    iq: "IQ / Reasoning (30 Questions)"
+};
+
+function switchSubject(subjectKey) {
+    currentSubject = subjectKey;
+    
+    // Update active tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(`tab-${subjectKey}`).classList.add('active');
+    
+    // Update start screen text
+    document.getElementById('active-subject-text').innerText = subjectNames[subjectKey];
+    document.getElementById('header-badge').innerText = `Selected Test: 30 Marks (${subjectKey.toUpperCase()})`;
+}
+
+function startTest() {
+    const nameInput = document.getElementById('student-name').value.trim();
+    if (!nameInput) {
+        alert("Please enter the candidate's full name to start the test.");
+        return;
+    }
+    
+    candidateName = nameInput;
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('quiz-wrapper').style.display = 'block';
+    document.getElementById('candidate-display').innerText = `Candidate: ${candidateName}`;
+    
+    currentQIndex = 0;
+    score = 0;
+    startTimer();
+    loadQuestion();
+}
+
+function startTimer() {
+    timeLeft = 1800; // 30 minutes limit
+    updateTimerDisplay();
+    
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            finishQuiz();
+        }
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const mins = Math.floor(timeLeft / 60);
+    const secs = timeLeft % 60;
+    document.getElementById('timer').innerText = `Time Left: ${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+function loadQuestion() {
+    const questions = quizMaster[currentSubject];
+    const qData = questions[currentQIndex];
+    
+    selectedOption = null;
+    document.getElementById('next-btn').disabled = true;
+    
+    // Progress Bar
+    const progressPercent = ((currentQIndex + 1) / questions.length) * 100;
+    document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+    
+    // Counter & Category Tag
+    document.getElementById('q-counter').innerText = `Question ${currentQIndex + 1} of ${questions.length}`;
+    document.getElementById('cat-tag').innerText = qData.cat;
+    
+    // Question & Options
+    document.getElementById('question-text').innerText = `${currentQIndex + 1}. ${qData.q}`;
+    const optionsContainer = document.getElementById('options-container');
+    optionsContainer.innerHTML = '';
+    
+    qData.options.forEach((optText, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = optText;
+        btn.onclick = () => selectOption(index, btn);
+        optionsContainer.appendChild(btn);
+    });
+}
+
+function selectOption(index, btnElement) {
+    const allBtns = document.querySelectorAll('.option-btn');
+    allBtns.forEach(b => b.classList.remove('correct', 'wrong'));
+    
+    const questions = quizMaster[currentSubject];
+    const correctAns = questions[currentQIndex].ans;
+    
+    selectedOption = index;
+    
+    if (index === correctAns) {
+        btnElement.classList.add('correct');
+    } else {
+        btnElement.classList.add('wrong');
+        allBtns[correctAns].classList.add('correct');
+    }
+    
+    // Disable further selection for this question
+    allBtns.forEach(b => b.style.pointerEvents = 'none');
+    
+    document.getElementById('next-btn').disabled = false;
+}
+
+function nextQuestion() {
+    const questions = quizMaster[currentSubject];
+    if (selectedOption === questions[currentQIndex].ans) {
+        score++;
+    }
+    
+    currentQIndex++;
+    if (currentQIndex < questions.length) {
+        loadQuestion();
+    } else {
+        finishQuiz();
+    }
+}
+
+function finishQuiz() {
+    clearInterval(timerInterval);
+    document.getElementById('quiz-wrapper').style.display = 'none';
+    document.getElementById('result-body').style.display = 'block';
+    
+    document.getElementById('result-candidate-name').innerText = candidateName;
+    document.getElementById('score-text').innerText = `${score} / 30`;
+    
+    const percentage = (score / 30) * 100;
+    const statusText = document.getElementById('status-text');
+    
+    if (percentage >= 80) {
+        statusText.innerText = "Outstanding! Qualified for PAF Cadet Standard.";
+        statusText.style.color = "var(--success-green)";
+    } else if (percentage >= 50) {
+        statusText.innerText = "Passed! Good Effort — Keep Practicing.";
+        statusText.style.color = "var(--accent-gold)";
+    } else {
+        statusText.innerText = "Needs Improvement. Re-try Test for Better Performance.";
+        statusText.style.color = "var(--danger-red)";
+    }
+}
+</script>
+</body>
+</html>
